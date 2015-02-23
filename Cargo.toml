@@ -1,0 +1,12 @@
+[package]
+name = "wiki_rs"
+version = "0.0.1"
+authors = ["me"]
+
+[[bin]]
+
+name = "wiki_rust"
+path = "wiki_rs.rs"
+
+[dependencies]
+time = "*"

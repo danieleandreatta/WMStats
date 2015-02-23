@@ -1,0 +1,10 @@
+*.exe
+*.o
+*.cmi
+*.cmx
+*.cmo
+*.class
+*.hi
+a.out
+target
+Cargo.lock
