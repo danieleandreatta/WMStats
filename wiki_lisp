@@ -1,0 +1,2 @@
+#!/bin/bash
+sbcl --noinform --quit --load wiki.lisp --end-toplevel-options $@
