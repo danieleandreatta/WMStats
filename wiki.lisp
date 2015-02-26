@@ -1,26 +1,32 @@
-(defun split (chars str &optional (lst nil) (accm ""))
-    (cond
-          ((= (length str) 0) (reverse (cons accm lst)))
-              (t (let ((c (char str 0)))
-                    (if (member c chars)
-                        (split chars (subseq str 1) (cons accm lst) "")
-                        (split chars (subseq str 1) lst 
-                            (concatenate 'string accm (string c))))))))
+(declaim (optimize (speed 3) (space 0) (debug 0)))
+
+(defun split-str (chr string)
+  (declare (optimize speed))
+  "Returns a list of substrings of string divided by ONE space each.
+  Note: Two consecutive spaces will be seen as if there were an empty string between them."
+      (loop for i = 0 then (1+ j)
+            as j = (position chr string :start i)
+            collect (subseq string i j) while j))
 
 (defun take (n lst)
+  (declare (fixnum i))
   (cond
     ((null lst) '())
     ((= n 0) '())
     (t (cons (first lst) (take (1- n) (rest lst))))))
 
+#+SBCL  (defparameter +ext-fmt+ :latin-1)
+#+CLISP (defparameter +ext-fmt+ (ext:make-encoding :charset 'charset:iso-8859-1 :line-terminator :unix))
+
 (defun read-stats (fname)
+  (declare (optimize speed))
   (let ((data '()))
-    (with-open-file (stream fname :external-format :latin-1)
+    (with-open-file (stream fname :external-format +ext-fmt+)
       (do ((line (read-line stream nil)
                  (read-line stream nil)))
         ((null line) data)
         (if (string= (subseq line 0 3) "en ")
-          (let* ((stats (split '(#\Space) line))
+          (let* ((stats (split-str #\Space line))
                  (page-count (parse-integer (third stats))))
             ;(format t "~S ~S ~S ~S~%" (second stats) (third stats) page-count (> page-count 500))
             (if (> page-count 500)
@@ -35,4 +41,7 @@
       (dolist (x (take 10 sorted-stats))
         (format t "~A (~D)~%" (first x) (second x))))))
 
-(main (second sb-ext:*posix-argv*))
+#+SBCL  (main (second sb-ext:*posix-argv*))
+#+CLISP (main (first *args*))
+
+
