@@ -46,6 +46,10 @@ of these limitations, it is somewhat tricky to get the correct formatting.
 
 Fortran 90 has many more functions to handle strings, so it is somewhat easier.
 
+### Python, Ruby, Perl
+
+The standard scripting languages. I used Perl, Python is the languate I know best right know and Ruby is the one I am using at the moment
+
 ### Rust, Go and Lua
 
 Go, Lua and Rust are new languages to me, I just wanted to see what they were like.
@@ -109,6 +113,8 @@ Go              1.2.1
 bash            4.3.11
 lua             5.3.2
 smalltalk       GNU Smalltalk 3.2.4
+lisp            SBCL 1.1.14
+clisp           GNU CLISP 2.49
 ```
 
 Times:
@@ -147,6 +153,7 @@ perl       ./wiki_precheck.pl               OK   8.49
 ruby       ./wiki_precheck.rb               OK   9.26 
 c++        ./wiki_sstream_cpp               OK  10.60 
 ruby2      ./wiki_precheck_2.rb             OK  11.18 
+lisp       ./wiki_lisp_sbcl                 OK  11.18 
 ocaml      ./wiki_split_ml                  OK  12.86
 ocaml      ./wiki_precheck_regex_ml         OK  13.67 
 perl       ./wiki_split.pl                  OK  14.08 
@@ -155,6 +162,7 @@ ruby       ./wiki_readlines.rb              OK  19.13
 ruby2      ./wiki_split_2.rb                OK  20.64 
 ruby2      ./wiki_readlines_2.rb            OK  20.92 
 lua        ./wiki.lua                       OK  37.00 
+clisp      ./wiki_lisp_clisp                OK  70.61 
 smalltalk  ./wiki_precheck.st               OK  78.84 
 smalltalk  ./wiki_precheck_classed.st       OK  81.79 
 smalltalk  ./wiki_precheck_regex.st         OK  87.17 
